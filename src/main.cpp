@@ -14,7 +14,7 @@ int main()
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
                     window.close();
             }
         }
