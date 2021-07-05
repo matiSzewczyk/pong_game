@@ -2,7 +2,7 @@
 
 int main()
 {
-    //POWINNO DZIAŁĄĆ patrzv asd sad asd adasd asd a
+    //dupsko
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "first project", sf::Style::Fullscreen);
 
     sf::RectangleShape square(sf::Vector2f(50.f, 50.f));
