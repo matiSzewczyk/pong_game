@@ -3,6 +3,7 @@
 int main()
 {
     //brawo
+    // mateusz z tej strony
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "first project", sf::Style::Fullscreen);
 
     sf::RectangleShape square(sf::Vector2f(50.f, 50.f));
