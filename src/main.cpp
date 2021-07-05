@@ -2,6 +2,7 @@
 
 int main()
 {
+    //dupsko
     //brawo
     // mateusz z tej strony
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "first project", sf::Style::Fullscreen);
