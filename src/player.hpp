@@ -1,6 +1,8 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
+#include <iostream>
+
 #include <SFML/Graphics.hpp>
 
 class Player
@@ -10,8 +12,8 @@ class Player
 
 
     public:
-        Player();
-        void playerMovement();
+        Player(const char &nr);
+        void playerMovement(float &dT, const char &nr);
         void drawPlayer(sf::RenderWindow &window);
 };
 #endif
