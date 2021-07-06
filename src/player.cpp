@@ -19,10 +19,10 @@ void Player::playerMoveUp(float &dT, bool &isPressed, sf::Vector2f &pos)
         this->player.move(0, -600.f * dT);
     }
 }
-void Player::playerMoveDown(float &dT, bool &isPressed)
+void Player::playerMoveDown(float &dT, bool &isPressed, sf::RenderWindow &window)
 {
 
-    if (isPressed && this->playerPos.y + this->player.getLocalBounds().height < 1080) {
+    if (isPressed && this->playerPos.y + this->player.getLocalBounds().height < window.getSize().y) {
         this->player.move(0, 600.f * dT);
     }
 }
@@ -33,10 +33,10 @@ void Player::playerMoveLeft(float &dT, bool &isPressed)
         this->player.move(-600.f * dT, 0);
     }
 }
-void Player::playerMoveRight(float &dT, bool &isPressed)
+void Player::playerMoveRight(float &dT, bool &isPressed, sf::RenderWindow &window)
 {
 
-    if (isPressed && this->playerPos.x + this->player.getLocalBounds().width < 1920) {
+    if (isPressed && this->playerPos.x + this->player.getLocalBounds().width < window.getSize().x) {
         this->player.move(600.f * dT, 0);
     }
 }

@@ -11,7 +11,7 @@ class TextClass
         sf::Font font;
 
     public:
-        TextClass(const std::string &string);
+        TextClass(const std::string &string, sf::RenderWindow &window);
         void displayMenu(sf::RenderWindow &window);
 };
 #endif

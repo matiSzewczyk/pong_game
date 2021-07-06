@@ -8,7 +8,7 @@ int main()
                             "Pong Game", 
                             sf::Style::Fullscreen);
     
-    TextClass * menuText = new TextClass("Would you like to start a new game?\n [q] - QUIT\n [p] - PLAY");
+    TextClass * menuText = new TextClass("Would you like to start a new game?\n [Q] - QUIT\n [P] - PLAY",window);
     bool gameRunning = false;
     sf::Clock deltaClock;
     float deltaTime;
@@ -58,7 +58,7 @@ int main()
                             p2MoveRight = true;
                             break;
                     }
-
+                    // Main menu key presses
                     if (event.key.code == sf::Keyboard::Q && !gameRunning) {
                         delete menuText;
                         window.close();
@@ -70,6 +70,7 @@ int main()
                         break;
                     }
                     break;
+
                 case sf::Event::KeyReleased:
                     switch (event.key.code) {
                         case sf::Keyboard::W:
@@ -109,14 +110,14 @@ int main()
             playerTwo->getPlayerPos();
             // Player Movement
             playerOne->playerMoveUp(deltaTime, p1MoveUp, playerPos);
-            playerOne->playerMoveDown(deltaTime, p1MoveDown);
+            playerOne->playerMoveDown(deltaTime, p1MoveDown, window);
             playerOne->playerMoveLeft(deltaTime, p1MoveLeft);
-            playerOne->playerMoveRight(deltaTime, p1MoveRight);
+            playerOne->playerMoveRight(deltaTime, p1MoveRight, window);
 
             playerTwo->playerMoveUp(deltaTime, p2MoveUp, playerPos);
-            playerTwo->playerMoveDown(deltaTime, p2MoveDown);
+            playerTwo->playerMoveDown(deltaTime, p2MoveDown, window);
             playerTwo->playerMoveLeft(deltaTime, p2MoveLeft);
-            playerTwo->playerMoveRight(deltaTime, p2MoveRight);
+            playerTwo->playerMoveRight(deltaTime, p2MoveRight, window);
 
             playerOne->drawPlayer(window);
             playerTwo->drawPlayer(window);
