@@ -13,9 +13,14 @@ int main()
     sf::Clock deltaClock;
     float deltaTime;
 
+    sf::Vector2f playerPos;
+
+    bool p1MoveUp = false, p1MoveDown = false, p1MoveLeft = false, p1MoveRight = false;
+    bool p2MoveUp = false, p2MoveDown = false, p2MoveLeft = false, p2MoveRight = false;
 
     Player * playerOne = new Player('1');
     Player * playerTwo = new Player('2');
+
     while (window.isOpen()) {
         sf::Event event;
         deltaTime = deltaClock.restart().asSeconds();
@@ -27,6 +32,33 @@ int main()
 
                 // Handle movement events
                 case sf::Event::KeyPressed:
+                    switch (event.key.code) {
+                        case sf::Keyboard::W:
+                            p1MoveUp = true;
+                            break;
+                        case sf::Keyboard::Up:
+                            p2MoveUp = true;
+                            break;
+                        case sf::Keyboard::S:
+                            p1MoveDown = true;
+                            break;
+                        case sf::Keyboard::Down:
+                            p2MoveDown = true;
+                            break;
+                        case sf::Keyboard::A:
+                            p1MoveLeft = true;
+                            break;
+                        case sf::Keyboard::Left:
+                            p2MoveLeft = true;
+                            break;
+                        case sf::Keyboard::D:
+                            p1MoveRight = true;
+                            break;
+                        case sf::Keyboard::Right:
+                            p2MoveRight = true;
+                            break;
+                    }
+
                     if (event.key.code == sf::Keyboard::Q && !gameRunning) {
                         delete menuText;
                         window.close();
@@ -37,6 +69,35 @@ int main()
                         delete menuText;
                         break;
                     }
+                    break;
+                case sf::Event::KeyReleased:
+                    switch (event.key.code) {
+                        case sf::Keyboard::W:
+                            p1MoveUp = false;
+                            break;
+                        case sf::Keyboard::Up:
+                            p2MoveUp = false;
+                            break;
+                        case sf::Keyboard::S:
+                            p1MoveDown = false;
+                            break;
+                        case sf::Keyboard::Down:
+                            p2MoveDown = false;
+                            break;
+                        case sf::Keyboard::A:
+                            p1MoveLeft = false;
+                            break;
+                        case sf::Keyboard::Left:
+                            p2MoveLeft = false;
+                            break;
+                        case sf::Keyboard::D:
+                            p1MoveRight = false;
+                            break;
+                        case sf::Keyboard::Right:
+                            p2MoveRight = false;
+                            break;
+                    }
+
             }
         }
         window.clear();
@@ -44,14 +105,18 @@ int main()
             menuText->displayMenu(window);
         }
         if (gameRunning) {
+            playerOne->getPlayerPos();
+            playerTwo->getPlayerPos();
+            // Player Movement
+            playerOne->playerMoveUp(deltaTime, p1MoveUp);
+            playerOne->playerMoveDown(deltaTime, p1MoveDown);
+            playerOne->playerMoveLeft(deltaTime, p1MoveLeft);
+            playerOne->playerMoveRight(deltaTime, p1MoveRight);
 
-
-            /*
-             *In order to simplify things, I'm going to use real time movement handling
-             *instead of using flags through sf::Event (inside the pollEvent loop above)
-             */
-            playerOne->playerMovement(deltaTime, '1');
-            playerTwo->playerMovement(deltaTime, '2');
+            playerTwo->playerMoveUp(deltaTime, p2MoveUp);
+            playerTwo->playerMoveDown(deltaTime, p2MoveDown);
+            playerTwo->playerMoveLeft(deltaTime, p2MoveLeft);
+            playerTwo->playerMoveRight(deltaTime, p2MoveRight);
 
             playerOne->drawPlayer(window);
             playerTwo->drawPlayer(window);

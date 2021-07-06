@@ -12,43 +12,38 @@ Player::Player(const char &nr)
     }
 }
 
-void Player::playerMovement(float &dT, const char &nr)
+void Player::playerMoveUp(float &dT, bool &isPressed)
 {
-    if (nr =='1') {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-            this->player.move(-600.f * dT, 0);
-        }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-            this->player.move(600.f * dT, 0);
-        }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-            this->player.move(0, -600.f * dT);
-        }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-            this->player.move(0, 600.f * dT);
-        }
+    if (isPressed) {
+        this->player.move(0, -600.f * dT);
     }
+}
+void Player::playerMoveDown(float &dT, bool &isPressed)
+{
 
-    if (nr =='2') {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            this->player.move(-600.f * dT, 0);
-        }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            this->player.move(600.f * dT, 0);
-        }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            this->player.move(0, -600.f * dT);
-        }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-            this->player.move(0, 600.f * dT);
-        }
+    if (isPressed) {
+        this->player.move(0, 600.f * dT);
     }
+}
+void Player::playerMoveLeft(float &dT, bool &isPressed)
+{
+
+    if (isPressed) {
+        this->player.move(-600.f * dT, 0);
+    }
+}
+void Player::playerMoveRight(float &dT, bool &isPressed)
+{
+
+    if (isPressed) {
+        this->player.move(600.f * dT, 0);
+    }
+}
+
+void Player::getPlayerPos()
+{
+    this->playerPos = this->player.getPosition();
 }
 
 void Player::drawPlayer(sf::RenderWindow &window)
