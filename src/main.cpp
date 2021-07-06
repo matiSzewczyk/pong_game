@@ -2,10 +2,11 @@
 
 int main()
 {
-    //dupsko
-    //brawo
-    // mateusz z tej strony
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "first project", sf::Style::Fullscreen);
+    // should match the desktop resolution
+    sf::RenderWindow window(sf::VideoMode().getDesktopMode(),
+                            "first project",
+                            sf::Style::Resize |
+                            sf::Style::Close);
 
     sf::RectangleShape square(sf::Vector2f(50.f, 50.f));
     square.setFillColor(sf::Color::Red);
