@@ -1,26 +1,43 @@
-#include <SFML/Graphics.hpp>
+#include "player.hpp"
+#include "textClass.hpp"
 
 int main()
 {
     // should match the desktop resolution
     sf::RenderWindow window(sf::VideoMode().getDesktopMode(),
-                            "first project",
-                            sf::Style::Resize |
-                            sf::Style::Close);
-
-    sf::RectangleShape square(sf::Vector2f(50.f, 50.f));
-    square.setFillColor(sf::Color::Red);
+                            "Pong Game",
+                            sf::Style::Fullscreen);
+    
+    TextClass * menuText = new TextClass("Would you like to start a new game?\n [q] - QUIT\n [p] - PLAY");
+    bool gameRunning = false;
 
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
+            switch (event.type) {
+                case sf::Event::Closed:
+                    window.close();
+                    break;
+
+                // Handle movement events
+                case sf::Event::KeyPressed:
+                    if (event.key.code == sf::Keyboard::Q && !gameRunning) {
+                        delete menuText;
+                        window.close();
+                        break;
+                    }
+                    if (event.key.code == sf::Keyboard::P && !gameRunning) {
+                        gameRunning = true;
+                        std::cout << "clikc";
+                        delete menuText;
+                        break;
+                    }
             }
         }
         window.clear();
-        
-        window.draw(square);
+        if (!gameRunning) {
+            menuText->displayMenu(window);
+        }
         
         window.display();
     }
