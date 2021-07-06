@@ -15,7 +15,7 @@ class Player
 
     public:
         Player(const char &nr);
-        void playerMoveUp(float &dT, bool &isPressed);
+        void playerMoveUp(float &dT, bool &isPressed, sf::Vector2f &pos);
         void playerMoveDown(float &dT, bool &isPressed);
         void playerMoveLeft(float &dT, bool &isPressed);
         void playerMoveRight(float &dT, bool &isPressed);

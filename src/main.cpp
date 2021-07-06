@@ -108,12 +108,12 @@ int main()
             playerOne->getPlayerPos();
             playerTwo->getPlayerPos();
             // Player Movement
-            playerOne->playerMoveUp(deltaTime, p1MoveUp);
+            playerOne->playerMoveUp(deltaTime, p1MoveUp, playerPos);
             playerOne->playerMoveDown(deltaTime, p1MoveDown);
             playerOne->playerMoveLeft(deltaTime, p1MoveLeft);
             playerOne->playerMoveRight(deltaTime, p1MoveRight);
 
-            playerTwo->playerMoveUp(deltaTime, p2MoveUp);
+            playerTwo->playerMoveUp(deltaTime, p2MoveUp, playerPos);
             playerTwo->playerMoveDown(deltaTime, p2MoveDown);
             playerTwo->playerMoveLeft(deltaTime, p2MoveLeft);
             playerTwo->playerMoveRight(deltaTime, p2MoveRight);

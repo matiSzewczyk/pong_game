@@ -12,31 +12,31 @@ Player::Player(const char &nr)
     }
 }
 
-void Player::playerMoveUp(float &dT, bool &isPressed)
+void Player::playerMoveUp(float &dT, bool &isPressed, sf::Vector2f &pos)
 {
 
-    if (isPressed) {
+    if (isPressed && this->playerPos.y > 0) {
         this->player.move(0, -600.f * dT);
     }
 }
 void Player::playerMoveDown(float &dT, bool &isPressed)
 {
 
-    if (isPressed) {
+    if (isPressed && this->playerPos.y + this->player.getLocalBounds().height < 1080) {
         this->player.move(0, 600.f * dT);
     }
 }
 void Player::playerMoveLeft(float &dT, bool &isPressed)
 {
 
-    if (isPressed) {
+    if (isPressed && this->playerPos.x > 0) {
         this->player.move(-600.f * dT, 0);
     }
 }
 void Player::playerMoveRight(float &dT, bool &isPressed)
 {
 
-    if (isPressed) {
+    if (isPressed && this->playerPos.x + this->player.getLocalBounds().width < 1920) {
         this->player.move(600.f * dT, 0);
     }
 }
