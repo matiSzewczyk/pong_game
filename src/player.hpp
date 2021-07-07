@@ -13,7 +13,7 @@ class Player: public sf::Sprite
         sf::Vector2f playerPos;
 
     public:
-        Player(const char &nr);
+        Player(const char &nr, sf::RenderWindow &window);
         void playerMoveUp(float &dT, bool &isPressed, sf::Vector2f &pos);
         void playerMoveDown(float &dT, bool &isPressed, sf::RenderWindow &window);
 

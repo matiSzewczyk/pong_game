@@ -6,7 +6,7 @@ Ball::Ball()
     ball.setPosition(sf::Vector2f(100.f, 500.f));
     ball.setFillColor(sf::Color::White);
 
-    speed = 800.f;
+    speed = 1400.f;
     ballAngle = 75.f;
 }
 

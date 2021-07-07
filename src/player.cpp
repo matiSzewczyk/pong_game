@@ -1,14 +1,15 @@
 #include "player.hpp"
 
-Player::Player(const char &nr)
+Player::Player(const char &nr, sf::RenderWindow &window)
 {
-    player.setSize(sf::Vector2f(20.f, 100.f));
+    player.setSize(sf::Vector2f(25.f, 150.f));
     if (nr == '1') {
         this->player.setFillColor(sf::Color::Red);
-        this->player.setPosition(sf::Vector2f(0.f, 600.f)); 
+        this->player.setPosition(sf::Vector2f(0.f, window.getSize().y/2 - player.getSize().y/2)); 
     } else {
         this->player.setFillColor(sf::Color::Blue);
-        this->player.setPosition(sf::Vector2f(1900.f, 600.f)); 
+        this->player.setPosition(sf::Vector2f(window.getSize().x - player.getSize().x,
+                                              window.getSize().y/2 - player.getSize().y/2)); 
     }
 }
 

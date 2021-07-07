@@ -8,7 +8,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode().getDesktopMode(),
                             "Pong Game", 
                             sf::Style::Fullscreen);
-    window.setVerticalSyncEnabled(true);
+    //window.setVerticalSyncEnabled(true);
     
     int p1Score = 0, p2Score = 0;
     TextClass * menuText = new TextClass();
@@ -22,8 +22,8 @@ int main()
     bool p1MoveUp = false, p1MoveDown = false;
     bool p2MoveUp = false, p2MoveDown = false;
 
-    Player * playerOne = new Player('1');
-    Player * playerTwo = new Player('2');
+    Player * playerOne = new Player('1', window);
+    Player * playerTwo = new Player('2', window);
 
     Ball ball;
 
