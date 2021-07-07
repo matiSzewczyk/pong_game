@@ -10,7 +10,9 @@ int main()
                             sf::Style::Fullscreen);
     window.setVerticalSyncEnabled(true);
     
-    TextClass * menuText = new TextClass("Would you like to start a new game?\n [Q] - QUIT\n [P] - PLAY", window);
+    int p1Score = 0, p2Score = 0;
+    TextClass * menuText = new TextClass();
+    TextClass * scoreText = new TextClass();
     bool gameRunning = false;
     sf::Clock deltaClock;
     float deltaTime;
@@ -35,7 +37,6 @@ int main()
                 case sf::Event::Closed:
                     window.close();
                     break;
-
                 // Handle movement events
                 case sf::Event::KeyPressed:
                     switch (event.key.code) {
@@ -55,6 +56,7 @@ int main()
                     // Main menu key presses
                     if (event.key.code == sf::Keyboard::Q && !gameRunning) {
                         delete menuText;
+                        delete scoreText;
                         delete playerOne;
                         delete playerTwo;
                         window.close();
@@ -66,7 +68,7 @@ int main()
                         break;
                     }
                     break;
-
+                    
                 case sf::Event::KeyReleased:
                     switch (event.key.code) {
                         case sf::Keyboard::W:
@@ -82,7 +84,7 @@ int main()
                             p2MoveDown = false;
                             break;
                     }
-
+                    break;
             }
         }
         window.clear();
@@ -102,11 +104,12 @@ int main()
             playerTwo->playerMoveDown(deltaTime, p2MoveDown, window);
             // Ball movement.
             ball.ballMovement(deltaTime);
-            ball.checkColision(playerOne, playerTwo, window);
+            ball.checkColision(playerOne, playerTwo, window, p1Score, p2Score);
             // Draw stuff.
             playerOne->drawPlayer(window);
             playerTwo->drawPlayer(window);
             ball.drawBall(window);
+            scoreText->displayScore(window, p1Score, p2Score);
         }
         window.display();
     }

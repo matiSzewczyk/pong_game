@@ -7,11 +7,13 @@
 class TextClass
 {
     private:
-        sf::Text text;
+        sf::Text menu;
+        sf::Text score;
         sf::Font font;
 
     public:
-        TextClass(const std::string &string, sf::RenderWindow &window);
+        TextClass();
         void displayMenu(sf::RenderWindow &window);
+        void displayScore(sf::RenderWindow &window, int &p1Score, int &p2Score);
 };
 #endif

@@ -34,6 +34,5 @@ void Player::getPlayerPos()
 
 void Player::drawPlayer(sf::RenderWindow &window)
 {
-    std::cout << "Player class: " << this->player.getGlobalBounds().left << std::endl;
     window.draw(this->player);
 }

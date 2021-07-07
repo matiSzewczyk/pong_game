@@ -18,18 +18,31 @@ void Ball::ballMovement(float &dT)
     ball.move(velocity.x, velocity.y);
 }
 
-void Ball::checkColision(Player *playerOne, Player *playerTwo, sf::RenderWindow &window)
+void Ball::checkColision(Player *playerOne, Player *playerTwo, sf::RenderWindow &window, int &p1Score, int &p2Score)
 {
+    // Check if it interacts with the players
     if (ball.getGlobalBounds().intersects(playerOne->playerCollision) ||
         ball.getGlobalBounds().intersects(playerTwo->playerCollision)) {
         speed = -speed;
         velocity.x = -(velocity.x);
         ballAngle = -ballAngle;
     }
+    // Check if it goes to the top/bottom of the screen
     if (ball.getGlobalBounds().top <= 0 ||
         ball.getGlobalBounds().top + ball.getGlobalBounds().height >= window.getSize().y) {
         velocity.x = -velocity.x;
         ballAngle = -ballAngle;
+    }
+    // Check if it reaches one of the two ends (scoring a point)
+    if (ball.getGlobalBounds().left < 0) { 
+        p2Score++;
+        ball.setPosition(sf::Vector2f(100.f, 500.f));
+        if (speed < 0) speed = -speed;
+    }
+    if (ball.getGlobalBounds().left + ball.getGlobalBounds().width > window.getSize().x) {
+        p1Score++;
+        ball.setPosition(sf::Vector2f(100.f, 500.f));
+        //if (speed < 0) speed = -speed;
     }
 }
 

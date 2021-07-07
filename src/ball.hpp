@@ -18,7 +18,7 @@ class Ball
     public:
         Ball();
         void ballMovement(float &dT);
-        void checkColision(Player *playerOne, Player *playerTwo, sf::RenderWindow &window);
+        void checkColision(Player *playerOne, Player *playerTwo, sf::RenderWindow &window, int &p1Score, int &p2Score);
         void drawBall(sf::RenderWindow &window);
         void getBallPosition();
 };

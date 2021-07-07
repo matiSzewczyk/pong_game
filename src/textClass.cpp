@@ -1,19 +1,29 @@
 #include "textClass.hpp"
 
-TextClass::TextClass(const std::string &string, sf::RenderWindow &window)
+TextClass::TextClass()
 {
     if (!font.loadFromFile("./res/arial_narrow_7.ttf")) {
         std::cout << "error loading font\n";
     }
-    text.setString(string);
-    text.setFont(font);
-    text.setCharacterSize(30);
-    text.setPosition(sf::Vector2f(window.getSize().x / 2 - text.getLocalBounds().width /2,
-                                  window.getSize().y/2));
+    menu.setString("Would you like to start a new game?\n [Q] - QUIT\n [P] - PLAY");
+    menu.setFont(font);
+    menu.setCharacterSize(30);
+
+    score.setFont(font);
+    score.setCharacterSize(25);
 }
 
 
 void TextClass::displayMenu(sf::RenderWindow &window)
 {
-    window.draw(this->text);
+    menu.setPosition(sf::Vector2f(window.getSize().x / 2 - menu.getGlobalBounds().width /2,
+                                  window.getSize().y/2));
+    window.draw(menu);
+}
+
+void TextClass::displayScore(sf::RenderWindow &window, int &p1Score, int &p2Score)
+{
+    score.setPosition(sf::Vector2f(window.getSize().x / 2 - score.getGlobalBounds().width /2, 0));
+    score.setString("Player 1: " + std::to_string(p1Score) + "\tPlayer 2: " + std::to_string(p2Score)); 
+    window.draw(score);
 }
