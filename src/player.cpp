@@ -18,31 +18,22 @@ void Player::playerMoveUp(float &dT, bool &isPressed, sf::Vector2f &pos)
         this->player.move(0, -600.f * dT);
     }
 }
+
 void Player::playerMoveDown(float &dT, bool &isPressed, sf::RenderWindow &window)
 {
     if (isPressed && this->playerPos.y + this->player.getLocalBounds().height < window.getSize().y) {
         this->player.move(0, 600.f * dT);
     }
 }
-void Player::playerMoveLeft(float &dT, bool &isPressed)
-{
-    if (isPressed && this->playerPos.x > 0) {
-        this->player.move(-600.f * dT, 0);
-    }
-}
-void Player::playerMoveRight(float &dT, bool &isPressed, sf::RenderWindow &window)
-{
-    if (isPressed && this->playerPos.x + this->player.getLocalBounds().width < window.getSize().x) {
-        this->player.move(600.f * dT, 0);
-    }
-}
 
 void Player::getPlayerPos()
 {
     this->playerPos = this->player.getPosition();
+    this->playerCollision = this->player.getGlobalBounds();
 }
 
 void Player::drawPlayer(sf::RenderWindow &window)
 {
+    std::cout << "Player class: " << this->player.getGlobalBounds().left << std::endl;
     window.draw(this->player);
 }

@@ -12,15 +12,19 @@ class Player: public sf::Sprite
         float speed;
         sf::Vector2f playerPos;
 
-
     public:
         Player(const char &nr);
         void playerMoveUp(float &dT, bool &isPressed, sf::Vector2f &pos);
         void playerMoveDown(float &dT, bool &isPressed, sf::RenderWindow &window);
-        void playerMoveLeft(float &dT, bool &isPressed);
-        void playerMoveRight(float &dT, bool &isPressed, sf::RenderWindow &window);
 
+        sf::FloatRect playerCollision;
         void getPlayerPos();
         void drawPlayer(sf::RenderWindow &window);
 };
 #endif
+
+/*
+ *I had to use playerCollision and actively update it because 
+ *for some reason getGlobalBounds() always returned 0 within 
+ *the ball class
+ */

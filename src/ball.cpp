@@ -4,9 +4,9 @@ Ball::Ball()
 {
     ball.setRadius(20.f);
     ball.setPosition(sf::Vector2f(100.f, 500.f));
-    ball.setFillColor(sf::Color::Green);
+    ball.setFillColor(sf::Color::White);
 
-    speed = 600.f;
+    speed = 800.f;
     ballAngle = 75.f;
 }
 
@@ -18,21 +18,19 @@ void Ball::ballMovement(float &dT)
     ball.move(velocity.x, velocity.y);
 }
 
-void Ball::checkColision(Player *playerOne, Player *playerTwo)
+void Ball::checkColision(Player *playerOne, Player *playerTwo, sf::RenderWindow &window)
 {
-    if (ball.getGlobalBounds().intersects(playerOne->getGlobalBounds()) ||
-        ball.getGlobalBounds().intersects(playerTwo->getGlobalBounds())) {
-        std::cout << "kolizja";
+    if (ball.getGlobalBounds().intersects(playerOne->playerCollision) ||
+        ball.getGlobalBounds().intersects(playerTwo->playerCollision)) {
         speed = -speed;
         velocity.x = -(velocity.x);
         ballAngle = -ballAngle;
     }
-    if (ball.getGlobalBounds().top <= 0 || ball.getGlobalBounds().height >= 1080) {
+    if (ball.getGlobalBounds().top <= 0 ||
+        ball.getGlobalBounds().top + ball.getGlobalBounds().height >= window.getSize().y) {
         velocity.x = -velocity.x;
         ballAngle = -ballAngle;
     }
-    std::cout << "Ball: " << ball.getGlobalBounds().left << std::endl;
-    std::cout << "Player: " << playerTwo->getGlobalBounds().left << std::endl;
 }
 
 void Ball::drawBall(sf::RenderWindow &window)

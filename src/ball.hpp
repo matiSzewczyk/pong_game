@@ -5,7 +5,7 @@
 #include "player.hpp"
 #include <cmath>
 
-class Ball: public sf::RectangleShape
+class Ball
 {
     private:
         sf::CircleShape ball;
@@ -18,7 +18,7 @@ class Ball: public sf::RectangleShape
     public:
         Ball();
         void ballMovement(float &dT);
-        void checkColision(Player *playerOne, Player *playerTwo);
+        void checkColision(Player *playerOne, Player *playerTwo, sf::RenderWindow &window);
         void drawBall(sf::RenderWindow &window);
         void getBallPosition();
 };
