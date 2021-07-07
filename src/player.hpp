@@ -5,7 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class Player
+class Player: public sf::Sprite
 {
     private:
         sf::RectangleShape player;

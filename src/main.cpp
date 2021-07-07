@@ -1,5 +1,6 @@
 #include "player.hpp"
 #include "textClass.hpp"
+#include "ball.hpp"
 
 int main()
 {
@@ -8,7 +9,7 @@ int main()
                             "Pong Game", 
                             sf::Style::Fullscreen);
     
-    TextClass * menuText = new TextClass("Would you like to start a new game?\n [Q] - QUIT\n [P] - PLAY",window);
+    TextClass * menuText = new TextClass("Would you like to start a new game?\n [Q] - QUIT\n [P] - PLAY", window);
     bool gameRunning = false;
     sf::Clock deltaClock;
     float deltaTime;
@@ -21,9 +22,13 @@ int main()
     Player * playerOne = new Player('1');
     Player * playerTwo = new Player('2');
 
+    Ball ball;
+
     while (window.isOpen()) {
+
         sf::Event event;
         deltaTime = deltaClock.restart().asSeconds();
+
         while (window.pollEvent(event)) {
             switch (event.type) {
                 case sf::Event::Closed:
@@ -61,6 +66,8 @@ int main()
                     // Main menu key presses
                     if (event.key.code == sf::Keyboard::Q && !gameRunning) {
                         delete menuText;
+                        delete playerOne;
+                        delete playerTwo;
                         window.close();
                         break;
                     }
@@ -106,24 +113,29 @@ int main()
             menuText->displayMenu(window);
         }
         if (gameRunning) {
+            // Update positions.
             playerOne->getPlayerPos();
             playerTwo->getPlayerPos();
-            // Player Movement
+            ball.getBallPosition();
+            std::cout << "PlayerTwo main: " << playerTwo->getGlobalBounds().left << std::endl;
+            // Player One Movement.
             playerOne->playerMoveUp(deltaTime, p1MoveUp, playerPos);
             playerOne->playerMoveDown(deltaTime, p1MoveDown, window);
             playerOne->playerMoveLeft(deltaTime, p1MoveLeft);
             playerOne->playerMoveRight(deltaTime, p1MoveRight, window);
-
+            // Player Two Movement.
             playerTwo->playerMoveUp(deltaTime, p2MoveUp, playerPos);
             playerTwo->playerMoveDown(deltaTime, p2MoveDown, window);
             playerTwo->playerMoveLeft(deltaTime, p2MoveLeft);
             playerTwo->playerMoveRight(deltaTime, p2MoveRight, window);
-
+            // Ball movement.
+            ball.ballMovement(deltaTime);
+            ball.checkColision(playerOne, playerTwo);
+            // Draw stuff.
             playerOne->drawPlayer(window);
             playerTwo->drawPlayer(window);
-
+            ball.drawBall(window);
         }
-        
         window.display();
     }
     return EXIT_SUCCESS;
