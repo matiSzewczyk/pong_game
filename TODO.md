@@ -8,8 +8,14 @@
 [x] - Need to add a score system.  
 [x] - Remove the warnings wherever we use window.getSize().  
 [x] - Remove the warnings in switch/case within main.cpp.  
-[ ] - add some bonus memes to the map (white edges, line across the middle) [optional].  
-[ ] - A pause menu would be nice.  
+[ ] - Add some bonus memes to the map (white edges, line across the middle) [optional].  
+[x] - A pause menu would be nice.  
+[x] - Add a sign letting the players know how to pause the game.  
 [ ] - make the movement of the player impact the angle of the bounce, atm it only inverts it.
     Angle of bounce is ALWAYS 75.f.  
-
+[ ] - textClass.cpp has a lot of the same code, we could compact this and make it
+shorter, however, if we wanted to use one function to display all the different text,
+as an example we'd be forced to pass score along with the pauseMenu object which
+is not very nice, makes no sense. Splitting the funcions as they are now ensures
+we only pass the objects/variables we need but again, code that could be is not reused.
+SEND HELP  
