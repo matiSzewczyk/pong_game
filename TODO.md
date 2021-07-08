@@ -2,7 +2,7 @@
 [x] - Change the way the players are positioned so that they spawn
     on the very edge relative to the screen resolution.  
 [x] - Change the way the map bounds are created, to do that i need to pass the window and replace
-    1080/1920 with window.getGlobalBounds(); (the current method doesn't work if someone uses a different res  
+    1080/1920 with window.getGlobalBounds(); (the current method doesn't work if someone uses a different res
     than FullHD  
 [x] - Need to add a score system  
 [ ] - Remove the warnings wherever we use window.getSize().
