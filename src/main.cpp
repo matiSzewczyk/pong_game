@@ -8,12 +8,16 @@ int main()
     sf::RenderWindow window(sf::VideoMode().getDesktopMode(),
                             "Pong Game", 
                             sf::Style::Fullscreen);
-    //window.setVerticalSyncEnabled(true);
     
     int p1Score = 0, p2Score = 0;
+
     TextClass * menuText = new TextClass();
     TextClass * scoreText = new TextClass();
-    bool gameRunning = false;
+    TextClass * pauseText = new TextClass();
+    TextClass * infoText = new TextClass();
+
+    bool gameRunning = false, gamePaused = false;
+
     sf::Clock deltaClock;
     float deltaTime;
 
@@ -52,6 +56,8 @@ int main()
                         case sf::Keyboard::Down:
                             p2MoveDown = true;
                             break;
+                        default:
+                            break;
                     }
                     // Main menu key presses
                     if (event.key.code == sf::Keyboard::Q && !gameRunning) {
@@ -60,12 +66,27 @@ int main()
                         delete playerOne;
                         delete playerTwo;
                         window.close();
-                        break;
+                        return EXIT_SUCCESS;
                     }
                     if (event.key.code == sf::Keyboard::P && !gameRunning) {
                         gameRunning = true;
                         delete menuText;
-                        break;
+                    }
+                    if (event.key.code == sf::Keyboard::Escape && gameRunning) {
+                        gamePaused = true;                    
+                    }
+                    if (gamePaused) { 
+                        if (event.key.code == sf::Keyboard::Q) {
+                            delete menuText;
+                            delete scoreText;
+                            delete playerOne;
+                            delete playerTwo;
+                            window.close();
+                            return EXIT_SUCCESS;
+                        }
+                        if (event.key.code == sf::Keyboard::R) {
+                            gamePaused = false;
+                        }
                     }
                     break;
                     
@@ -83,8 +104,13 @@ int main()
                         case sf::Keyboard::Down:
                             p2MoveDown = false;
                             break;
+                        default:
+                            break;
                     }
                     break;
+                default:
+                    break;
+                    
             }
         }
         window.clear();
@@ -93,23 +119,30 @@ int main()
         }
         if (gameRunning) {
             // Update positions.
-            playerOne->getPlayerPos();
-            playerTwo->getPlayerPos();
-            ball.getBallPosition();
-            // Player One Movement.
-            playerOne->playerMoveUp(deltaTime, p1MoveUp, playerPos);
-            playerOne->playerMoveDown(deltaTime, p1MoveDown, window);
-            // Player Two Movement.
-            playerTwo->playerMoveUp(deltaTime, p2MoveUp, playerPos);
-            playerTwo->playerMoveDown(deltaTime, p2MoveDown, window);
-            // Ball movement.
-            ball.ballMovement(deltaTime);
-            ball.checkColision(playerOne, playerTwo, window, p1Score, p2Score);
+            if (!gamePaused) {
+                playerOne->getPlayerPos();
+                playerTwo->getPlayerPos();
+                ball.getBallPosition();
+                // Player One Movement.
+                playerOne->playerMoveUp(deltaTime, p1MoveUp, playerPos);
+                playerOne->playerMoveDown(deltaTime, p1MoveDown, window);
+                // Player Two Movement.
+                playerTwo->playerMoveUp(deltaTime, p2MoveUp, playerPos);
+                playerTwo->playerMoveDown(deltaTime, p2MoveDown, window);
+                // Ball movement.
+                ball.ballMovement(deltaTime);
+                ball.checkColision(playerOne, playerTwo, window, p1Score, p2Score);
+            }
+            // Pause menu.
+            if (gamePaused) {
+                pauseText->displayPause(window);
+            }
             // Draw stuff.
             playerOne->drawPlayer(window);
             playerTwo->drawPlayer(window);
             ball.drawBall(window);
             scoreText->displayScore(window, p1Score, p2Score);
+            infoText->displayInfo(window);
         }
         window.display();
     }
