@@ -8,7 +8,6 @@ int main()
     sf::RenderWindow window(sf::VideoMode().getDesktopMode(),
                             "Pong Game", 
                             sf::Style::Fullscreen);
-    //window.setVerticalSyncEnabled(true);
     
     int p1Score = 0, p2Score = 0;
     TextClass * menuText = new TextClass();
@@ -52,6 +51,8 @@ int main()
                         case sf::Keyboard::Down:
                             p2MoveDown = true;
                             break;
+                        default:
+                            break;
                     }
                     // Main menu key presses
                     if (event.key.code == sf::Keyboard::Q && !gameRunning) {
@@ -83,8 +84,13 @@ int main()
                         case sf::Keyboard::Down:
                             p2MoveDown = false;
                             break;
+                        default:
+                            break;
                     }
                     break;
+                default:
+                    break;
+                    
             }
         }
         window.clear();
