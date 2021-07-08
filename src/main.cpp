@@ -145,8 +145,8 @@ int main()
             playerTwo->drawPlayer(window);
             ball.drawBall(window);
             scoreText->displayScore(window, p1Score, p2Score);
-            infoText->displayInfo(window);
             map.drawOuterLines(window);
+            infoText->displayInfo(window);// must be drawn after map!
         }
         window.display();
     }

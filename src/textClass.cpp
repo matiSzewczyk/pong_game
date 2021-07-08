@@ -13,10 +13,11 @@ TextClass::TextClass()
     pause.setFont(font);
     pause.setCharacterSize(30);
 
-    info.setString("[Esc] - Pause");
+    info.setString("\t[Esc] - Pause");
     info.setFont(font);
     info.setCharacterSize(15);
     info.setFillColor(sf::Color::Black);
+    info.setOutlineColor(sf::Color::Black);
 
     score.setFont(font);
     score.setCharacterSize(35);
