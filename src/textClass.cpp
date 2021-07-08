@@ -16,9 +16,10 @@ TextClass::TextClass()
     info.setString("[Esc] - Pause");
     info.setFont(font);
     info.setCharacterSize(15);
+    info.setFillColor(sf::Color::Black);
 
     score.setFont(font);
-    score.setCharacterSize(25);
+    score.setCharacterSize(35);
 }
 
 
@@ -44,7 +45,7 @@ void TextClass::displayInfo(sf::RenderWindow &window)
 
 void TextClass::displayScore(sf::RenderWindow &window, int &p1Score, int &p2Score)
 {
-    score.setPosition(sf::Vector2f(window.getSize().x/2.f - score.getGlobalBounds().width/2, 0));
-    score.setString("Player 1: " + std::to_string(p1Score) + "\tPlayer 2: " + std::to_string(p2Score)); 
+    score.setPosition(sf::Vector2f(window.getSize().x/2.f - score.getGlobalBounds().width/2, 25.f));
+    score.setString(std::to_string(p1Score) + "\t\t\t" + std::to_string(p2Score)); 
     window.draw(score);
 }

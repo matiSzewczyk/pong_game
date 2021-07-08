@@ -1,6 +1,7 @@
 #include "player.hpp"
 #include "textClass.hpp"
 #include "ball.hpp"
+#include "map.hpp"
 
 int main()
 {
@@ -15,6 +16,8 @@ int main()
     TextClass * scoreText = new TextClass();
     TextClass * pauseText = new TextClass();
     TextClass * infoText = new TextClass();
+
+    Map map;
 
     bool gameRunning = false, gamePaused = false;
 
@@ -143,6 +146,7 @@ int main()
             ball.drawBall(window);
             scoreText->displayScore(window, p1Score, p2Score);
             infoText->displayInfo(window);
+            map.drawOuterLines(window);
         }
         window.display();
     }
