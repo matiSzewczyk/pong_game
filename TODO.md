@@ -19,5 +19,10 @@ as an example we'd be forced to pass score along with the pauseMenu object which
 is not very nice, makes no sense. Splitting the funcions as they are now ensures
 we only pass the objects/variables we need but again, code that could be is not reused.
 SEND HELP  
-[ ] - I added +25 to stuff like movement boundries instead of taking a more professional
-approach and getting xMapPiece.getSize().y, but i can't be bothered OMEGALUL  
+[x] - Major memory dealloc for objects happens twice - once for main menu exit and 2nd time for
+pause menu exit, the first set of delete's still applies for second one even tho
+they are locked behind an if statement. I don't think it should be this way. If i add
+delete's for the same objects for the 2nd scenario (pause menu exit) it throws an 
+error on exit for duped delete.  
+[x] - Syntax for events has to be reworked, I mixed if's with case: and it's a mess
+There have to be some rules like only bools in ifs and organising the code in some better way.  

@@ -44,7 +44,8 @@ int main()
                 case sf::Event::Closed:
                     window.close();
                     break;
-                // Handle movement events
+    // KEY PRESSED
+                // MOVEMENT
                 case sf::Event::KeyPressed:
                     switch (event.key.code) {
                         case sf::Keyboard::W:
@@ -62,23 +63,8 @@ int main()
                         default:
                             break;
                     }
-                    // Main menu key presses
-                    if (event.key.code == sf::Keyboard::Q && !gameRunning) {
-                        delete menuText;
-                        delete scoreText;
-                        delete playerOne;
-                        delete playerTwo;
-                        window.close();
-                        return EXIT_SUCCESS;
-                    }
-                    if (event.key.code == sf::Keyboard::P && !gameRunning) {
-                        gameRunning = true;
-                        delete menuText;
-                    }
-                    if (event.key.code == sf::Keyboard::Escape && gameRunning) {
-                        gamePaused = true;                    
-                    }
-                    if (gamePaused) { 
+                    // MAIN MENU
+                    if (!gameRunning) {
                         if (event.key.code == sf::Keyboard::Q) {
                             delete menuText;
                             delete scoreText;
@@ -87,33 +73,54 @@ int main()
                             window.close();
                             return EXIT_SUCCESS;
                         }
-                        if (event.key.code == sf::Keyboard::R) {
-                            gamePaused = false;
+                        if (event.key.code == sf::Keyboard::P) {
+                            gameRunning = true;
+                            delete menuText;
                         }
                     }
-                    break;
-                    
-                case sf::Event::KeyReleased:
-                    switch (event.key.code) {
-                        case sf::Keyboard::W:
-                            p1MoveUp = false;
-                            break;
-                        case sf::Keyboard::Up:
-                            p2MoveUp = false;
-                            break;
-                        case sf::Keyboard::S:
-                            p1MoveDown = false;
-                            break;
-                        case sf::Keyboard::Down:
-                            p2MoveDown = false;
+                    // DURING GAMEPLAY
+                    // PAUSE MENU
+                    if (gameRunning) {
+                        if (event.key.code == sf::Keyboard::Escape) {
+                            gamePaused = true;                    
+                        }
+                        if (gamePaused) { 
+                            if (event.key.code == sf::Keyboard::Q) {
+                                delete pauseText;
+                                delete scoreText;
+                                delete playerOne;
+                                delete playerTwo;
+                                window.close();
+                                return EXIT_SUCCESS;
+                            }
+                            if (event.key.code == sf::Keyboard::R) {
+                                gamePaused = false;
+                            }
+                        }
+                        break;
+    // KEY RELEASED
+                        // MOVEMENT
+                        case sf::Event::KeyReleased:
+                            switch (event.key.code) {
+                                case sf::Keyboard::W:
+                                    p1MoveUp = false;
+                                    break;
+                                case sf::Keyboard::Up:
+                                    p2MoveUp = false;
+                                    break;
+                                case sf::Keyboard::S:
+                                    p1MoveDown = false;
+                                    break;
+                                case sf::Keyboard::Down:
+                                    p2MoveDown = false;
+                                    break;
+                                default:
+                                    break;
+                            }
                             break;
                         default:
                             break;
                     }
-                    break;
-                default:
-                    break;
-                    
             }
         }
         window.clear();

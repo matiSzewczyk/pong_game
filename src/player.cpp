@@ -16,7 +16,7 @@ Player::Player(const char &nr, sf::RenderWindow &window)
 
 void Player::playerMoveUp(float &dT, bool &isPressed, sf::Vector2f &pos)
 {
-    if (isPressed && this->playerPos.y > 25.f) {
+    if (isPressed && this->playerPos.y > 25.f) { //25 is the width of the outer lines
         this->player.move(0, -speed * dT);
     }
 }
