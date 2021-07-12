@@ -11,6 +11,7 @@ class Player: public sf::Sprite
         sf::RectangleShape player;
         float speed;
         sf::Vector2f playerPos;
+        sf::Vector2f originalPos;
 
     public:
         sf::FloatRect playerCollision;
@@ -19,6 +20,7 @@ class Player: public sf::Sprite
         void playerMoveUp(float &dT, bool &isPressed);
         void playerMoveDown(float &dT, bool &isPressed, sf::RenderWindow &window);
         void getPlayerPos();
+        void setOriginalPos();
         void drawPlayer(sf::RenderWindow &window);
 };
 #endif

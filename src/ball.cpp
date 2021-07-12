@@ -3,7 +3,8 @@
 Ball::Ball()
 {
     ball.setRadius(20.f);
-    ball.setPosition(sf::Vector2f(100.f, 500.f));
+    originalPos = sf::Vector2f(100.f, 500.f);
+    ball.setPosition(originalPos);
     ball.setFillColor(sf::Color::White);
 
     speed = 1400.f;
@@ -36,12 +37,12 @@ void Ball::checkColision(Player *playerOne, Player *playerTwo, sf::RenderWindow 
     // Check if it reaches one of the two ends (scoring a point)
     if (ball.getGlobalBounds().left < 0) { 
         p2Score++;
-        ball.setPosition(sf::Vector2f(100.f, 500.f));
+        ball.setPosition(originalPos);
         if (speed < 0) speed = -speed;
     }
     if (ball.getGlobalBounds().left + ball.getGlobalBounds().width > window.getSize().x) {
         p1Score++;
-        ball.setPosition(sf::Vector2f(100.f, 500.f));
+        ball.setPosition(originalPos);
         //if (speed < 0) speed = -speed;
     }
 }
@@ -49,6 +50,11 @@ void Ball::checkColision(Player *playerOne, Player *playerTwo, sf::RenderWindow 
 void Ball::drawBall(sf::RenderWindow &window)
 {
     window.draw(ball);
+}
+
+void Ball::setOriginalPos()
+{
+    this->ball.setPosition(originalPos);
 }
 
 void Ball::getBallPosition()

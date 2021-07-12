@@ -5,11 +5,13 @@ Player::Player(const char &nr, sf::RenderWindow &window)
     player.setSize(sf::Vector2f(25.f, 150.f));
     if (nr == '1') {
         this->player.setFillColor(sf::Color::Red);
-        this->player.setPosition(sf::Vector2f(25.f, window.getSize().y/2.f - player.getSize().y/2)); 
+        this->originalPos = sf::Vector2f(25.f, window.getSize().y/2.f - player.getSize().y/2);
+        this->player.setPosition(originalPos); 
     } else {
         this->player.setFillColor(sf::Color::Blue);
-        this->player.setPosition(sf::Vector2f(window.getSize().x - player.getSize().x-25,
-                                              window.getSize().y/2.f - player.getSize().y/2)); 
+        this->originalPos = sf::Vector2f(window.getSize().x - player.getSize().x-25,
+                                              window.getSize().y/2.f - player.getSize().y/2);
+        this->player.setPosition(originalPos); 
     }
     speed = 700.f;
 }
@@ -32,6 +34,11 @@ void Player::getPlayerPos()
 {
     this->playerPos = this->player.getPosition();
     this->playerCollision = this->player.getGlobalBounds();
+}
+
+void Player::setOriginalPos()
+{
+    this->player.setPosition(originalPos);
 }
 
 void Player::drawPlayer(sf::RenderWindow &window)

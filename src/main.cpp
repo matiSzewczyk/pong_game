@@ -12,10 +12,10 @@ int main()
     
     int p1Score = 0, p2Score = 0;
 
-    TextClass * menuText = new TextClass();
-    TextClass * scoreText = new TextClass();
-    TextClass * pauseText = new TextClass();
-    TextClass * infoText = new TextClass();
+    TextClass * menuText = new TextClass("menu");
+    TextClass * scoreText = new TextClass("score");
+    TextClass * pauseText = new TextClass("pause");
+    TextClass * infoText = new TextClass("info");
 
     Map map;
 
@@ -91,7 +91,15 @@ int main()
                                 window.close();
                                 return EXIT_SUCCESS;
                             }
+                            if (event.key.code == sf::Keyboard::C) {
+                                gamePaused = false;
+                            }
                             if (event.key.code == sf::Keyboard::R) {
+                                //restart
+                                p1Score = 0;
+                                p2Score = 0;
+                                playerOne->setOriginalPos();
+                                playerTwo->setOriginalPos();
                                 gamePaused = false;
                             }
                         }

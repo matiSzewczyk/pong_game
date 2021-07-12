@@ -1,26 +1,34 @@
 #include "textClass.hpp"
 
-TextClass::TextClass()
+TextClass::TextClass(const std::string &textType)
 {
     if (!font.loadFromFile("./res/arial_narrow_7.ttf")) {
         std::cout << "error loading font\n";
     }
-    menu.setString("Would you like to start a new game?\n [Q] - QUIT\n [P] - PLAY");
-    menu.setFont(font);
-    menu.setCharacterSize(30);
-
-    pause.setString("Game paused\n [Q] - QUIT\n [R] - RESUME");
-    pause.setFont(font);
-    pause.setCharacterSize(30);
-
-    info.setString("\t[Esc] - Pause");
-    info.setFont(font);
-    info.setCharacterSize(15);
-    info.setFillColor(sf::Color::Black);
-    info.setOutlineColor(sf::Color::Black);
-
-    score.setFont(font);
-    score.setCharacterSize(35);
+    // To ensure all these sf::Text objects aren't created for no reason
+    // if the TextClass object will  only use one of these, we pass a flag
+    // to determine which sf::Text should be created
+    if (textType == "menu") {
+        menu.setString("Would you like to start a new game?\n [Q] - QUIT\n [P] - PLAY");
+        menu.setFont(font);
+        menu.setCharacterSize(30);
+    }
+    else if (textType == "pause") {
+        pause.setString("Game paused\n [Q] - QUIT\n [C] - Continue\n [R] - RESTART");
+        pause.setFont(font);
+        pause.setCharacterSize(30);
+    }
+    else if (textType == "info") {
+        info.setString("\t[Esc] - Pause");
+        info.setFont(font);
+        info.setCharacterSize(15);
+        info.setFillColor(sf::Color::Black);
+        info.setOutlineColor(sf::Color::Black);
+    }
+    else if (textType == "score") {
+        score.setFont(font);
+        score.setCharacterSize(35);
+    }
 }
 
 
