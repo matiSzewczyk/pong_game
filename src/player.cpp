@@ -14,7 +14,7 @@ Player::Player(const char &nr, sf::RenderWindow &window)
     speed = 700.f;
 }
 
-void Player::playerMoveUp(float &dT, bool &isPressed, sf::Vector2f &pos)
+void Player::playerMoveUp(float &dT, bool &isPressed)
 {
     if (isPressed && this->playerPos.y > 25.f) { //25 is the width of the outer lines
         this->player.move(0, -speed * dT);

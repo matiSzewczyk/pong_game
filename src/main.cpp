@@ -24,8 +24,6 @@ int main()
     sf::Clock deltaClock;
     float deltaTime;
 
-    sf::Vector2f playerPos;
-
     bool p1MoveUp = false, p1MoveDown = false;
     bool p2MoveUp = false, p2MoveDown = false;
 
@@ -134,10 +132,10 @@ int main()
                 playerTwo->getPlayerPos();
                 ball.getBallPosition();
                 // Player One Movement.
-                playerOne->playerMoveUp(deltaTime, p1MoveUp, playerPos);
+                playerOne->playerMoveUp(deltaTime, p1MoveUp);
                 playerOne->playerMoveDown(deltaTime, p1MoveDown, window);
                 // Player Two Movement.
-                playerTwo->playerMoveUp(deltaTime, p2MoveUp, playerPos);
+                playerTwo->playerMoveUp(deltaTime, p2MoveUp);
                 playerTwo->playerMoveDown(deltaTime, p2MoveDown, window);
                 // Ball movement.
                 ball.ballMovement(deltaTime);
