@@ -100,6 +100,7 @@ int main()
                                 p2Score = 0;
                                 playerOne->setOriginalPos();
                                 playerTwo->setOriginalPos();
+                                ball.setOriginalPos();
                                 gamePaused = false;
                             }
                         }
