@@ -1,1 +1,1 @@
-C++ Pong Game based on the SFML game library
+C++ Pong Game built using the SFML game library.
